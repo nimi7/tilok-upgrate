@@ -7,12 +7,14 @@ function generateFullUrl() {
       ? process.env.REACT_APP_DOMAIN
       : "localhost:3001";
   const http = process.env.NODE_ENV === "production" ? "https" : "http";
+  console.log('domain',domain)
   return `${http}://${domain}`;
 }
 
 const api = axios.create({
   baseURL: generateFullUrl() + "/api",
 });
+console.log('api',api)
 export const getAllGuides = () => api.get("/guides");
 export const searchGuideById = (id) => api.get(`guides/:${id}`);
 export const searchGuides = (country, lang, city, cost, comments) =>
